@@ -54,8 +54,8 @@
 	#{	
 		host => text(),					% Default "127.0.0.1"
 		port => inet:port_number(),		% Default 2375
-		proto => tcp | tls,				% Default tcp
-		?TLS_TYPES
+		proto => tcp | tls				% Default tcp
+%		?TLS_TYPES
 	}.
 
 -type docker_device() ::
