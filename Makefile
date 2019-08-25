@@ -1,36 +1,36 @@
 REPO ?= nkdocker
-
+REBAR = rebar3
 .PHONY: deps release
 
 all: deps compile
 
 compile:
-	./rebar compile
+	$(REBAR) compile
 
 compile-nodeps:
-	./rebar compile skip_deps=true
+	$(REBAR) compile skip_deps=true
 
 deps:
-	./rebar get-deps
+	$(REBAR) get-deps
 
 clean: 
-	./rebar clean
+	$(REBAR) clean
 
 distclean: clean
-	./rebar delete-deps
+	$(REBAR) delete-deps
 
 tests: compile eunit
 
 eunit:
 	export ERL_FLAGS="-config test/app.config -args_file test/vm.args"; \
-	./rebar eunit skip_deps=true
+	$(REBAR) eunit skip_deps=true
 
 shell:
 	erl -config util/shell_app.config -args_file util/shell_vm.args -s nkdocker_app
 
 
 docs:
-	./rebar skip_deps=true doc
+	$(REBAR) skip_deps=true doc
 
 
 APPS = kernel stdlib sasl erts ssl tools os_mon runtime_tools crypto inets \
